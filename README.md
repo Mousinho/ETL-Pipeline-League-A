@@ -9,46 +9,54 @@ The goal is to showcase enterprise data engineering patterns in a reproducible e
 
 ## Architecture
 
-```text
-API Source
-   |
-   v
-RAW Layer
-   |
-   v
-STAGE Layer
-   |
-   v
-TRUSTED Layer
-   |
-   v
-DELIVERY Layer
-```
+API Source (League A)
+        │
+        ▼
+┌──────────────┐
+│   RAW Layer  │  ← Raw JSON data ingested directly from the API
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│  STAGE Layer │  ← JSON parsed to Spark DataFrames, schema defined
+└──────┬───────┘
+       │
+       ▼
+┌───────────────┐
+│ TRUSTED Layer │  ← Data cleaned, deduplicated, and validated
+└──────┬────────┘
+       │
+       ▼
+┌────────────────┐
+│ DELIVERY Layer │  ← Final curated datasets ready for BI or dashboard use
+└────────────────┘
+
+Each layer is stored as a Delta Lake table, enabling schema enforcement, version control, and ACID transactions — a key advantage in modern data lake design.
 
 ## Tech Stack
 
 | Tool | Purpose |
 |------|---------|
-| Databricks | Notebook environment |
-| Apache Spark / PySpark | Data processing |
-| Delta Lake | Reliable storage |
-| Python | Extraction and transformation |
-| REST API | Data source |
+| Databricks | Unified analytics and notebook environment |
+| Apache Spark / PySpark | Distributed data processing |
+| Delta Lake | Transactional and versioned storage layer |
+| Python | Data extraction and transformation |
+| REST API | External data source for ingestion |
 
 ## What I Practised
 
-- Consuming data from a REST API.
-- Applying the Medallion Architecture.
-- Using Delta Lake for versioned storage.
-- Enforcing schema and validating data.
-- Building the pipeline in Databricks notebooks.
+- Consuming structured sports data from a REST API.
+- Implementing the Medallion Architecture for incremental, reliable data transformation.
+- Using Delta Lake for versioning and clean data management.
+- Applying schema enforcement, validation, and deduplication logic.
+- Using Databricks notebooks for orchestration and pipeline modularization.
 
 ## How to Run
 
-1. Clone the repository.
-2. Import the notebooks into Databricks.
-3. Run them in order: Raw → Stage → Trusted → Delivery.
-4. Use Databricks Community Edition if needed.
+1. Clone this repository to your local environment or Databricks workspace.
+2. Import each notebook into Databricks (`File → Import`).
+3. Execute the notebooks sequentially: **Raw → Stage → Trusted → Delivery**.
+4. A free Databricks Community Edition account is sufficient to run this workflow.
 
 ## Author
 
