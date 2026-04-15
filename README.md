@@ -8,28 +8,15 @@ This project simulates a real-world sports data pipeline, ingesting, transformin
 The goal is to showcase enterprise data engineering patterns in a reproducible environment.
 
 ## Architecture
-
 API Source (League A)
-        │
-        ▼
-┌──────────────┐
-│   RAW Layer  │  ← Raw JSON data ingested directly from the API
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│  STAGE Layer │  ← JSON parsed to Spark DataFrames, schema defined
-└──────┬───────┘
-       │
-       ▼
-┌───────────────┐
-│ TRUSTED Layer │  ← Data cleaned, deduplicated, and validated
-└──────┬────────┘
-       │
-       ▼
-┌────────────────┐
-│ DELIVERY Layer │  ← Final curated datasets ready for BI or dashboard use
-└────────────────┘
+↓
+RAW Layer ← Raw JSON ingested as-is
+↓
+STAGE Layer ← Schema enforced DataFrames
+↓
+TRUSTED Layer ← Cleaned & validated data
+↓
+DELIVERY Layer ← BI-ready datasets
 
 Each layer is stored as a Delta Lake table, enabling schema enforcement, version control, and ACID transactions — a key advantage in modern data lake design.
 
