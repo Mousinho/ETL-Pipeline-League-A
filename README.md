@@ -1,73 +1,56 @@
-ETL Pipeline — League A Data
-A practical data engineering project designed to build an end-to-end ETL pipeline using modern tools and the Medallion Architecture (Raw → Stage → Trusted → Delivery) on Databricks, focused on ingesting, transforming, and delivering sports data for analytical use.
+# ETL Pipeline — League A Data
 
-Overview
-This project simulates a real-world scenario of ingesting and processing sports data — specifically data from “League A,” which includes teams, players, matches, and performance metrics.
-The goal is to showcase enterprise-grade data engineering techniques in a reproducible environment while establishing a clean data flow from unstructured ingestion to curated analytical outputs.
+A practical data engineering project built to practise end-to-end ETL pipeline development using the Medallion Architecture (Raw → Stage → Trusted → Delivery) on Databricks.
 
-Data is collected from the League A API, transformed through structured layers, and stored as Delta Lake tables for reliability, versioning, and scalability.
+## Overview
 
-Architecture
-API Source (League A)
-│
-▼
-┌───────────────┐
-│ RAW Layer │ ← Raw JSON data ingested directly from the API
-└───────┬────────┘
-│
-▼
-┌────────────────┐
-│ STAGE Layer │ ← JSON parsed to Spark DataFrames, schema defined
-└───────┬────────┘
-│
-▼
-┌─────────────────┐
-│ TRUSTED Layer │ ← Data cleaned, deduplicated, and validated
-└───────┬────────┘
-│
-▼
-┌───────────────────┐
-│ DELIVERY Layer │ ← Final curated datasets ready for BI or dashboard use
-└───────────────────┘
+This project simulates a real-world sports data pipeline, ingesting, transforming, and delivering data for analytical use.  
+The goal is to showcase enterprise data engineering patterns in a reproducible environment.
 
-Each layer is stored as a Delta Lake table, enabling schema enforcement, version control, and ACID transactions — a key advantage in modern data lake design.
+## Architecture
 
-Tech Stack
-Tool	Purpose
-Databricks	Unified analytics and notebook environment
-Apache Spark / PySpark	Distributed data processing
-Delta Lake	Transactional and versioned storage layer
-Python	Data extraction and transformation
-REST API (League A)	External data source for ingestion
-Project Structure
-text
-ETL_League_A/
-│
-├── Raw_LeagueA.ipynb         # Layer 1: Extract data → Raw Delta table  
-├── Stage_LeagueA.ipynb       # Layer 2: Enforce schema → Stage Delta table  
-├── Trusted_LeagueA.ipynb     # Layer 3: Clean data → Trusted Delta table  
-├── Delivery_LeagueA.ipynb    # Layer 4: Curate dataset → Delivery Delta table  
-└── README.md  
-What I Practised
-Consuming structured sports data from a REST API.
+```text
+API Source
+   |
+   v
+RAW Layer
+   |
+   v
+STAGE Layer
+   |
+   v
+TRUSTED Layer
+   |
+   v
+DELIVERY Layer
+```
 
-Implementing the Medallion Architecture for incremental, reliable data transformation.
+## Tech Stack
 
-Using Delta Lake for versioning and clean data management.
+| Tool | Purpose |
+|------|---------|
+| Databricks | Notebook environment |
+| Apache Spark / PySpark | Data processing |
+| Delta Lake | Reliable storage |
+| Python | Extraction and transformation |
+| REST API | Data source |
 
-Applying schema enforcement, validation, and deduplication logic.
+## What I Practised
 
-Using Databricks notebooks for orchestration and pipeline modularization.
+- Consuming data from a REST API.
+- Applying the Medallion Architecture.
+- Using Delta Lake for versioned storage.
+- Enforcing schema and validating data.
+- Building the pipeline in Databricks notebooks.
 
-How to Run
-Clone this repository to your local environment or Databricks workspace.
+## How to Run
 
-Import each notebook into Databricks (File → Import).
+1. Clone the repository.
+2. Import the notebooks into Databricks.
+3. Run them in order: Raw → Stage → Trusted → Delivery.
+4. Use Databricks Community Edition if needed.
 
-Execute the notebooks sequentially: Raw → Stage → Trusted → Delivery.
+## Author
 
-A free Databricks Community Edition account is sufficient to run this workflow.
-
-Author
-Pedro Ribeiro — Data Analyst & BI Developer based in Sydney, Australia
-LinkedIn · GitHub
+Pedro Ribeiro — Data Analyst & BI Developer based in Sydney, Australia  
+[LinkedIn](https://www.linkedin.com/in/pedroribeiroit/) · [GitHub](https://github.com/Mousinho)
