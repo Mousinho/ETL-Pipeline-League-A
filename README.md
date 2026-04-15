@@ -9,7 +9,7 @@ The goal is to showcase enterprise data engineering patterns in a reproducible e
 
 ## Architecture
 
-1. **RAW Layer** ← Raw JSON data ingested directly from League A API
+1. **RAW Layer** ← Raw JSON data ingested
 2. **STAGE Layer** ← JSON parsed to Spark DataFrames, schema enforced
 3. **TRUSTED Layer** ← Data cleaned, deduplicated, validated
 4. **DELIVERY Layer** ← Final curated datasets for BI/dashboard use
@@ -24,7 +24,6 @@ Each layer stored as **Delta Lake tables** with ACID transactions.
 | Apache Spark / PySpark | Distributed data processing |
 | Delta Lake | Transactional and versioned storage layer |
 | Python | Data extraction and transformation |
-| REST API | External data source for ingestion |
 
 ## What I Practised
 
