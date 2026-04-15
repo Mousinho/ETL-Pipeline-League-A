@@ -43,5 +43,5 @@ Each layer stored as **Delta Lake tables** with ACID transactions.
 
 ## Author
 
-Pedro Ribeiro — Data Analyst & BI Developer based in Sydney, Australia  
+Pedro Ribeiro — Data Engineer & BI Developer based in Sydney, Australia  
 [LinkedIn](https://www.linkedin.com/in/pedroribeiroit/) · [GitHub](https://github.com/Mousinho)
